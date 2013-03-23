@@ -1,2 +1,6 @@
+.idea
 *.pyc
 *.sqlite3
+local_settings.py
+media/
+django.mo
