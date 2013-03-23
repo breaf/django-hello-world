@@ -5,22 +5,22 @@
 
     <div class="contacts">
         <div class="blocks">
-            <p>{{ request.user.first_name }}</p>
-            <p>{{ request.user.last_name }}</p>
-            <p>{{ request.user.userprofile.date_of_birth }}</p>
+            <p>{{ users.0.first_name }}</p>
+            <p>{{ users.0.last_name }}</p>
+            <p>{{ users.0.userprofile.date_of_birth }}</p>
             <p>
                 Bio:<br>
-                {{ request.user.userprofile.bio }}
+                {{ users.0.userprofile.bio }}
             </p>
         </div>
         <div class="blocks">
             <p>Contacts</p>
-            <p>Email: {{ request.user.email }}</p>
-            <p>Jabber: {{ request.user.userprofile.jabber }}</p>
-            <p>Skype: {{ request.user.userprofile.skype }}</p>
+            <p>Email: {{ users.0.email }}</p>
+            <p>Jabber: {{ users.0.userprofile.jabber }}</p>
+            <p>Skype: {{ users.0.userprofile.skype }}</p>
             <p>
                 Other contacts:<br>
-                {{ request.user.userprofile.contacts }}
+                {{ users.0.userprofile.contacts }}
             </p>
         </div>
     </div>
