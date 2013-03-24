@@ -13,3 +13,9 @@ class UserProfile(models.Model):
 
     class Meta:
         verbose_name = u"profile"
+
+
+class RequestRecord(models.Model):
+    user = models.ForeignKey(User, related_name="requests", null=True, blank=True)
+    content = models.TextField("Request content")
+

@@ -2,7 +2,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
-from .models import UserProfile
+from .models import UserProfile, RequestRecord
 
 
 admin.site.unregister(User)
@@ -17,5 +17,10 @@ class UserProfileAdmin(UserAdmin):
     inlines = [UserProfileInline, ]
 
 
+class RequestRecordAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user')
+
+
 admin.site.register(User, UserProfileAdmin)
+admin.site.register(RequestRecord, RequestRecordAdmin)
 
