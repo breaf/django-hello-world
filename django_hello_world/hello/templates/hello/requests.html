@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <ul>
+        {% for record in records %}
+            <li>#{{ record.id }}: {{ record.content|truncatewords:8 }}</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}
