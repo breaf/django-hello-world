@@ -25,7 +25,8 @@
         </div>
     </div>
 
-    <a href="{% url requests_list %}">requests</a>
+    <p><a href="{% url requests_list %}">requests</a></p>
+    <p>settings.DEBUG: {{ settings.DEBUG }}</p>
 
     <div>
         <p>You can now go to <a href="{% url admin:index %}">admin interface</a> and change admin pasword</p>
