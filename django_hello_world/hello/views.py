@@ -23,7 +23,7 @@ def home(request):
         else:
             user_form = UserForm(instance=request.user)
             profile_form = ProfileForm(instance=request.user.get_profile())
-        return {'users': users, 'user_form': user_form, 'profile_form': profile_form}
+        return {'user_form': user_form, 'profile_form': profile_form}
     else:
         return {'users': users}
 

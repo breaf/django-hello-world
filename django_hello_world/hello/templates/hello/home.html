@@ -14,8 +14,8 @@
                         Photo: <br>
                         {{ profile_form.photo }}
                     </p>
-                    {% if users.0.userprofile.photo %}
-                        <img src="{{ users.0.userprofile.photo.url }}" width="294" height="400" border="2">
+                    {% if user.userprofile.photo %}
+                        <img src="{{ user.userprofile.photo.url }}" width="294" height="400" border="2">
                     {% endif %}
                 </div>
                 <div class="blocks">
