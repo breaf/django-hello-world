@@ -10,6 +10,7 @@ class UserProfile(models.Model):
     skype = models.CharField("Skype", max_length=100, null=True, blank=True)
     bio = models.TextField("Bio", null=True, blank=True)
     contacts = models.TextField("Other contacts", null=True, blank=True)
+    photo = models.ImageField("Photo", upload_to='photos', null=True, blank=True)
 
     class Meta:
         verbose_name = u"profile"
