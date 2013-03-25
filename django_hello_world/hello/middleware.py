@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*-
-from hello.models import RequestRecord
+from .models import RequestRecord
 
 
 class StoresRequestsMiddleware(object):
