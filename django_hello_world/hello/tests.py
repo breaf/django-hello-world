@@ -24,3 +24,6 @@ class HttpTest(TestCase):
         response = c.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, '42 Coffee Cups Test Assignment')
+        # Check for non empty name
+        self.assertGreater(len(response.context['users'][0].first_name), 0)
+        self.assertGreater(len(response.context['users'][0].last_name), 0)
