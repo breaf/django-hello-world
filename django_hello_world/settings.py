@@ -25,7 +25,7 @@ DATABASES = {
     }
 }
 
-AUTH_PROFILE_MODULE = 'django_hello_world.hello.UserProfile'
+AUTH_PROFILE_MODULE = 'hello.UserProfile'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
