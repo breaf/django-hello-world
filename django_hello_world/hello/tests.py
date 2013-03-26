@@ -8,6 +8,7 @@ Replace this with more appropriate tests for your application.
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test.client import Client
+from django.conf import settings
 
 
 class SimpleTest(TestCase):
@@ -23,4 +24,4 @@ class HttpTest(TestCase):
         c = Client()
         response = c.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, '42 Coffee Cups Test Assignment')
+        self.assertContains(response, settings.DEBUG)
