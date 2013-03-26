@@ -15,7 +15,7 @@
                         {{ profile_form.photo }}
                     </p>
                     {% if users.0.userprofile.photo %}
-                        <img src="{{ users.0.userprofile.photo.url }}" width="294" height="400" border="2">
+                        <img id="avatar" src="{{ users.0.userprofile.photo.url }}" width="294" height="400" border="2">
                     {% endif %}
                 </div>
                 <div class="blocks">
@@ -42,7 +42,7 @@
                 <p>{{ users.0.last_name }}</p>
                 <p>{{ users.0.userprofile.date_of_birth }}</p>
                 {% if users.0.userprofile.photo %}
-                    <img src="{{ users.0.userprofile.photo.url }}" width="294" height="400" border="2">
+                    <img id="avatar" src="{{ users.0.userprofile.photo.url }}" width="294" height="400" border="2">
                 {% endif %}
             </div>
             <div class="blocks">
