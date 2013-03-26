@@ -4,6 +4,9 @@
 <head>
     <title>{% block title %}No title{% endblock %}</title>
     <style type="text/css">
+        body {
+            margin: 10px !important;
+        }
         .contacts {
             margin: 10px 0 10px 20px;
         }
@@ -17,6 +20,7 @@
             margin: 20px 0 20px 0;
         }
     </style>
+    {% block extrahead %}{% endblock %}
 </head>
 <body>
     {% block body %}
