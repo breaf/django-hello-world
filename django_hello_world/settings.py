@@ -25,7 +25,7 @@ DATABASES = {
     }
 }
 
-AUTH_PROFILE_MODULE = 'hello.UserProfile'
+AUTH_PROFILE_MODULE = 'django_hello_world.hello.UserProfile'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -104,7 +104,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.request',
-    'hello.context_processors.settings_context',
+    'django_hello_world.hello.context_processors.settings_context',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -113,7 +113,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'hello.middleware.StoresRequestsMiddleware',
+    'django_hello_world.hello.middleware.StoresRequestsMiddleware',
 )
 
 ROOT_URLCONF = 'django_hello_world.urls'
