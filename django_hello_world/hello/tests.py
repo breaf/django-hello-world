@@ -4,11 +4,12 @@ when you run "manage.py test".
 
 Replace this with more appropriate tests for your application.
 """
+import os
 
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.contrib.auth.models import User
-from settings import path
+from django.conf import settings
 
 
 class HttpTest(TestCase):
@@ -28,6 +29,7 @@ class HttpTest(TestCase):
 
     def test_photo_upload(self):
         self.client.login(username='admin', password='admin')
+        path = lambda *args: os.path.join(settings.PROJ_MODULE_ROOT, *args)
         p = path('hello', 'static', 'avatar.jpg')
         with open(p, 'rb') as photo:
             response = self.client.post(reverse('home'), {'photo': photo})
