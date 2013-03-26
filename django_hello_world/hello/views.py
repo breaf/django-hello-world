@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 from annoying.decorators import render_to
 from django.contrib.auth.models import User
-from hello.models import RequestRecord
+from .models import RequestRecord
 
 
 @render_to('hello/home.html')
