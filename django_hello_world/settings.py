@@ -97,7 +97,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.request',
-    'hello.context_processors.settings_context',
+    'django_hello_world.hello.context_processors.settings_context',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -106,7 +106,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'hello.middleware.StoresRequestsMiddleware',
+    'django_hello_world.hello.middleware.StoresRequestsMiddleware',
 )
 
 ROOT_URLCONF = 'django_hello_world.urls'
