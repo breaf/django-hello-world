@@ -48,3 +48,7 @@ class HttpTest(TestCase):
             self.client.post(reverse('edit_contacts'), {'photo': photo})
         response = self.client.get(reverse('edit_contacts'))
         self.assertContains(response, 'id="avatar"')
+
+        photo = User.objects.get(username='admin').userprofile.photo
+        photo.delete()
+
