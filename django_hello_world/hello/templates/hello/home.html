@@ -42,68 +42,35 @@
     <h3>42 Coffee Cups Test Assignment</h3>
 
     <div class="contacts">
-        {% if request.user.is_authenticated %}
-            <form id="contact_form" action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
-                <div class="blocks">
-                    <p>Name: {{ user_form.first_name }}</p>
-                    <p>Last name: {{ user_form.last_name }}</p>
-                    <p>Date of birth: {{ profile_form.date_of_birth }}</p>
-                    <p>
-                        Photo: <br>
-                        {{ profile_form.photo }}
-                    </p>
-                    {% if user.userprofile.photo %}
-                        <img src="{{ user.userprofile.photo.url }}" width="294" height="400" border="2">
-                    {% endif %}
-                </div>
-                <div class="blocks">
-                    <p>Email: {{ user_form.email }}</p>
-                    <p>Jabber: {{ profile_form.jabber }}</p>
-                    <p>Skype: {{ profile_form.skype }}</p>
-                    <p>
-                        Other contacts:<br>
-                        {{ profile_form.contacts }}
-                    </p>
-                    <p>
-                        Bio:<br>
-                        {{ profile_form.bio }}
-                    </p>
-                </div>
-                <p>
-                    <input id="submit_button" type="submit" value="Save">
-                    <a href="javascript:void(0);" onclick="document.forms[0].reset()">Cancel</a>
-                </p>
-                <div class="progress_bar_wrapper">
-                    <div id="progress_bar"></div>
-                </div>
-            </form>
-        {% else %}
-            <div class="blocks">
-                <p>{{ users.0.first_name }}</p>
-                <p>{{ users.0.last_name }}</p>
-                <p>{{ users.0.userprofile.date_of_birth }}</p>
-                {% if users.0.userprofile.photo %}
-                    <img src="{{ users.0.userprofile.photo.url }}" width="294" height="400" border="2">
-                {% endif %}
-            </div>
-            <div class="blocks">
-                <p>Contacts</p>
-                <p>Email: {{ users.0.email }}</p>
-                <p>Jabber: {{ users.0.userprofile.jabber }}</p>
-                <p>Skype: {{ users.0.userprofile.skype }}</p>
-                <p>
-                    Other contacts:<br>
-                    {{ users.0.userprofile.contacts }}
-                </p>
-                <p>
-                    Bio:<br>
-                    {{ users.0.userprofile.bio }}
-                </p>
-            </div>
-            <div class="blocks">
+        <div class="blocks">
+            <p>{{ user.first_name }}</p>
+            <p>{{ user.last_name }}</p>
+            <p>{{ user.userprofile.date_of_birth }}</p>
+            {% if user.userprofile.photo %}
+                <img id="avatar" src="{{ user.userprofile.photo.url }}" width="294" height="400" border="2">
+            {% endif %}
+        </div>
+        <div class="blocks">
+            <p>Contacts</p>
+            <p>Email: {{ user.email }}</p>
+            <p>Jabber: {{ user.userprofile.jabber }}</p>
+            <p>Skype: {{ user.userprofile.skype }}</p>
+            <p>
+                Other contacts:<br>
+                {{ user.userprofile.contacts }}
+            </p>
+            <p>
+                Bio:<br>
+                {{ user.userprofile.bio }}
+            </p>
+        </div>
+        <div class="blocks">
+            {% if request.user.is_authenticated %}
+                <a href="{% url edit_contacts %}">Edit</a>
+            {% else %}
                 <a href="{% url admin:index %}">Login</a>
-            </div>
-        {% endif %}
+            {% endif %}
+        </div>
     </div>
 
     <div class="separator">
