@@ -25,6 +25,10 @@
                 uploadProgress: function(event, position, total, percentComplete) {
                     var percentVal = percentComplete + '%';
                     progress_bar.width(percentVal);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert('Connection error.');
+                    hideProgress();
                 }
             });
             function showProgress() {

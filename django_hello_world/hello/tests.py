@@ -24,8 +24,9 @@ class HttpTest(TestCase):
 
     def test_ajax(self):
         self.assertTrue(self.client.login(username='admin', password='admin'))
-        response = self.client.post(reverse('home'), HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        response = self.client.post(reverse('edit_contacts'), HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'success')
 
     def test_edit_contacts_login(self):
         self.assertTrue(self.client.login(username='admin', password='admin'))
