@@ -19,4 +19,5 @@ class UserProfile(models.Model):
 class RequestRecord(models.Model):
     user = models.ForeignKey(User, related_name="requests", null=True, blank=True)
     content = models.TextField("Request content")
+    added_at = models.DateTimeField("Added at", auto_now_add=True)
 

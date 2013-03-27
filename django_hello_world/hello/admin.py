@@ -18,7 +18,7 @@ class UserProfileAdmin(UserAdmin):
 
 
 class RequestRecordAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user')
+    list_display = ('id', 'user', 'added_at')
 
 
 admin.site.register(User, UserProfileAdmin)
