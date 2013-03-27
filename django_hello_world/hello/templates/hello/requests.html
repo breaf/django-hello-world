@@ -6,4 +6,5 @@
             <li>#{{ record.id }}: {{ record.content|truncatewords:8 }}</li>
         {% endfor %}
     </ul>
+    <p><a href="{% url home %}">Back</a></p>
 {% endblock content %}
