@@ -1,38 +1,39 @@
 {% extends "base.html" %}
 
+
 {% block content %}
     <h3>42 Coffee Cups Test Assignment</h3>
 
     <div class="contacts">
-            <div class="blocks">
-                <p>{{ user.first_name }}</p>
-                <p>{{ user.last_name }}</p>
-                <p>{{ user.userprofile.date_of_birth }}</p>
-                {% if user.userprofile.photo %}
-                    <img id="avatar" src="{{ user.userprofile.photo.url }}" width="294" height="400" border="2">
-                {% endif %}
-            </div>
-            <div class="blocks">
-                <p>Contacts</p>
-                <p>Email: {{ user.email }}</p>
-                <p>Jabber: {{ user.userprofile.jabber }}</p>
-                <p>Skype: {{ user.userprofile.skype }}</p>
-                <p>
-                    Other contacts:<br>
-                    {{ user.userprofile.contacts }}
-                </p>
-                <p>
-                    Bio:<br>
-                    {{ user.userprofile.bio }}
-                </p>
-            </div>
-            <div class="blocks">
-                {% if request.user.is_authenticated %}
-                    <a href="{% url edit_contacts %}">Edit</a>
-                {% else %}
-                    <a href="{% url admin:index %}">Login</a>
-                {% endif %}
-            </div>
+        <div class="blocks">
+            <p>{{ user.first_name }}</p>
+            <p>{{ user.last_name }}</p>
+            <p>{{ user.userprofile.date_of_birth }}</p>
+            {% if user.userprofile.photo %}
+                <img id="avatar" src="{{ user.userprofile.photo.url }}" width="294" height="400" border="2">
+            {% endif %}
+        </div>
+        <div class="blocks">
+            <p>Contacts</p>
+            <p>Email: {{ user.email }}</p>
+            <p>Jabber: {{ user.userprofile.jabber }}</p>
+            <p>Skype: {{ user.userprofile.skype }}</p>
+            <p>
+                Other contacts:<br>
+                {{ user.userprofile.contacts }}
+            </p>
+            <p>
+                Bio:<br>
+                {{ user.userprofile.bio }}
+            </p>
+        </div>
+        <div class="blocks">
+            {% if request.user.is_authenticated %}
+                <a href="{% url edit_contacts %}">Edit</a>
+            {% else %}
+                <a href="{% url auth_login %}">Login</a>
+            {% endif %}
+        </div>
     </div>
 
     <div class="separator">

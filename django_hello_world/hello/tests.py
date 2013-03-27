@@ -14,6 +14,20 @@ from django.conf import settings
 
 class HttpTest(TestCase):
 
+    def test_home(self):
+        response = self.client.get(reverse('home'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, '42 Coffee Cups Test Assignment')
+        # Check for non empty name
+        self.assertGreater(len(response.context['user'].first_name), 0)
+        self.assertGreater(len(response.context['user'].last_name), 0)
+
+    def test_ajax(self):
+        self.assertTrue(self.client.login(username='admin', password='admin'))
+        response = self.client.post(reverse('edit_contacts'), HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'success')
+
     def test_edit_contacts_login(self):
         self.assertTrue(self.client.login(username='admin', password='admin'))
         response = self.client.get(reverse('edit_contacts'))
@@ -35,3 +49,7 @@ class HttpTest(TestCase):
             self.client.post(reverse('edit_contacts'), {'photo': photo})
         response = self.client.get(reverse('edit_contacts'))
         self.assertContains(response, 'id="avatar"')
+
+        photo = User.objects.get(username='admin').userprofile.photo
+        photo.delete()
+

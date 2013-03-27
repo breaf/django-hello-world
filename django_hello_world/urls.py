@@ -8,7 +8,7 @@ from django.contrib.staticfiles.urls import static
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
+    url(r'^login/$', 'django.contrib.auth.views.login', name='auth_login'),
     url(r'^$', 'django_hello_world.hello.views.home', name='home'),
     # url(r'^django_hello_world/', include('django_hello_world.foo.urls')),
     url(r'^contacts/edit/$', 'django_hello_world.hello.views.edit_contacts', name='edit_contacts'),

@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import redirect
+from django.utils import simplejson
 from .forms import ProfileForm, UserForm
 from .models import RequestRecord
 
@@ -27,7 +28,10 @@ def edit_contacts(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            return redirect('home')
+            if request.is_ajax():
+                return HttpResponse(simplejson.dumps({"success": True, }), content_type="application/json")
+            else:
+                return redirect('home')
         else:
             print user_form.errors
             print profile_form.errors
