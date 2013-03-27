@@ -1,31 +1,40 @@
 #-*- coding: utf-8 -*-
 from annoying.decorators import render_to
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.http import HttpResponse
+from django.shortcuts import redirect
 from .forms import ProfileForm, UserForm
 from .models import RequestRecord
 
 
 @render_to('hello/home.html')
 def home(request):
-    users = User.objects.filter()
-    if request.user.is_authenticated():
-        if request.method == 'POST':
-            user_form = UserForm(request.POST, instance=request.user)
-            profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.get_profile())
-            if user_form.is_valid():
-                user_form.save()
-            else:
-                print user_form.errors
-            if profile_form.is_valid():
-                profile_form.save()
-            else:
-                print profile_form.errors
+    try:
+        user = User.objects.get(id=1)
+    except User.DoesNotExist:
+        return HttpResponse("Error. There is no any users in database.")
+
+    return {'user': user}
+
+
+@login_required
+@render_to('hello/edit.html')
+def edit_contacts(request):
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.get_profile())
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            return redirect('home')
         else:
-            user_form = UserForm(instance=request.user)
-            profile_form = ProfileForm(instance=request.user.get_profile())
-        return {'users': users, 'user_form': user_form, 'profile_form': profile_form}
-    else:
-        return {'users': users}
+            print user_form.errors
+            print profile_form.errors
+
+    user_form = UserForm(instance=request.user)
+    profile_form = ProfileForm(instance=request.user.get_profile())
+    return {'user_form': user_form, 'profile_form': profile_form}
 
 
 @render_to('hello/requests.html')

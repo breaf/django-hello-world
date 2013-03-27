@@ -4,35 +4,40 @@
     <h3>42 Coffee Cups Test Assignment</h3>
 
     <div class="contacts">
+        <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
             <div class="blocks">
-                <p>{{ user.first_name }}</p>
-                <p>{{ user.last_name }}</p>
-                <p>{{ user.userprofile.date_of_birth }}</p>
+                <p>Name: {{ user_form.first_name }}</p>
+                <p>Last name: {{ user_form.last_name }}</p>
+                <p>Date of birth: {{ profile_form.date_of_birth }}</p>
+                <p>
+                    Photo: <br>
+                    {{ profile_form.photo }}
+                </p>
                 {% if user.userprofile.photo %}
                     <img id="avatar" src="{{ user.userprofile.photo.url }}" width="294" height="400" border="2">
                 {% endif %}
             </div>
             <div class="blocks">
-                <p>Contacts</p>
-                <p>Email: {{ user.email }}</p>
-                <p>Jabber: {{ user.userprofile.jabber }}</p>
-                <p>Skype: {{ user.userprofile.skype }}</p>
+                <p>Email: {{ user_form.email }}</p>
+                <p>Jabber: {{ profile_form.jabber }}</p>
+                <p>Skype: {{ profile_form.skype }}</p>
                 <p>
                     Other contacts:<br>
-                    {{ user.userprofile.contacts }}
+                    {{ profile_form.contacts }}
                 </p>
                 <p>
                     Bio:<br>
-                    {{ user.userprofile.bio }}
+                    {{ profile_form.bio }}
                 </p>
             </div>
             <div class="blocks">
-                {% if request.user.is_authenticated %}
-                    <a href="{% url edit_contacts %}">Edit</a>
-                {% else %}
-                    <a href="{% url admin:index %}">Login</a>
-                {% endif %}
+                <a href="{% url home %}">Back</a>
             </div>
+            <p>
+                <input type="submit" value="Save">
+                <input type="reset" value="Cancel">
+            </p>
+        </form>
     </div>
 
     <div class="separator">
