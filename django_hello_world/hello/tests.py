@@ -7,6 +7,8 @@ Replace this with more appropriate tests for your application.
 import os
 
 from django.core.urlresolvers import reverse
+from django.http import HttpRequest
+from django.template import RequestContext, Template
 from django.test import TestCase
 from django.contrib.auth.models import User
 from django.conf import settings
@@ -52,4 +54,11 @@ class HttpTest(TestCase):
 
         photo = User.objects.get(username='admin').userprofile.photo
         photo.delete()
+
+    def test_tag(self):
+        user = User.objects.get(username='admin')
+        context = RequestContext(HttpRequest())
+        context['user'] = user
+        result = Template('{% load edit_tag %}{% edit_link user %}').render(context)
+        self.assertEqual(result, '/admin/auth/user/1/')
 

@@ -40,7 +40,6 @@ def edit_contacts(request):
     return {'user_form': user_form, 'profile_form': profile_form}
 
 
-
 @render_to('hello/requests.html')
 def requests(request):
     records = RequestRecord.objects.all()[:10]
