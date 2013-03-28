@@ -60,5 +60,5 @@ class HttpTest(TestCase):
         context = RequestContext(HttpRequest())
         context['user'] = user
         result = Template('{% load edit_tag %}{% edit_link user %}').render(context)
-        self.assertEqual(result, '/admin/auth/user/%s/' % user.id)
+        self.assertEqual(result, '<a href="/admin/auth/user/%s/">admin</a>' % user.id)
 
