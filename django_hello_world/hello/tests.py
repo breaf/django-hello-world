@@ -65,7 +65,7 @@ class HttpTest(TestCase):
         self.assertEqual(result, '<a href="/admin/auth/user/%s/">admin</a>' % user.id)
 
     def test_bash_script(self):
-        os.popen("bash ./command_execute")
+        os.popen("bash django_hello_world/command_execute")
         filename = '%s.dat' % datetime.date.today()
         path = lambda *args: os.path.join(settings.PROJ_MODULE_ROOT, *args)
         f = path(filename)
@@ -73,4 +73,5 @@ class HttpTest(TestCase):
             contents = log_file.read()
             models_dict = eval(contents)
         self.assertTrue(models_dict['UserProfile'] == UserProfile.objects.count())
-        os.remove(filename)
+	print contents
+        os.remove(f)
