@@ -5,6 +5,7 @@ when you run "manage.py test".
 Replace this with more appropriate tests for your application.
 """
 import os
+import datetime
 
 from django.core.urlresolvers import reverse
 from django.http import HttpRequest
@@ -12,6 +13,7 @@ from django.template import RequestContext, Template
 from django.test import TestCase
 from django.contrib.auth.models import User
 from django.conf import settings
+from .models import UserProfile
 
 
 class HttpTest(TestCase):
@@ -62,3 +64,13 @@ class HttpTest(TestCase):
         result = Template('{% load edit_tag %}{% edit_link user %}').render(context)
         self.assertEqual(result, '<a href="/admin/auth/user/%s/">admin</a>' % user.id)
 
+    def test_bash_script(self):
+        os.popen("bash ../command_execute")
+        filename = '%s.dat' % datetime.date.today()
+        path = lambda *args: os.path.join(settings.PROJ_MODULE_ROOT, *args)
+        f = path(filename)
+        with open(f, 'r') as log_file:
+            contents = log_file.read()
+            models_dict = eval(contents)
+        self.assertTrue(models_dict['UserProfile'] == UserProfile.objects.count())
+        os.remove(filename)
