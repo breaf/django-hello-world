@@ -13,4 +13,4 @@ def edit_link(obj):
     model_name = model.__name__.lower()
     edit_view_name = 'admin:%s_%s_change' % (app_label, model_name)
     edit_url = reverse(edit_view_name, args=[obj.pk])
-    return edit_url
+    return '<a href="%s">admin</a>' % edit_url
