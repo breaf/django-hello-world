@@ -13,7 +13,7 @@ from django.template import RequestContext, Template
 from django.test import TestCase
 from django.contrib.auth.models import User
 from django.conf import settings
-from hello.models import UserProfile
+from .models import UserProfile
 
 
 class HttpTest(TestCase):
