@@ -73,8 +73,4 @@ class HttpTest(TestCase):
             contents = log_file.read()
             models_dict = eval(contents)
         self.assertTrue(models_dict['UserProfile'] == UserProfile.objects.count())
-<<<<<<< HEAD
-=======
-	print contents
->>>>>>> ca2db4660f63c7c305cb5b959fd879b337f44074
         os.remove(f)
