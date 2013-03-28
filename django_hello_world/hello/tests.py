@@ -65,7 +65,7 @@ class HttpTest(TestCase):
         self.assertEqual(result, '<a href="/admin/auth/user/%s/">admin</a>' % user.id)
 
     def test_bash_script(self):
-        os.popen("bash ./command_execute")
+        os.popen("bash ../command_execute")
         filename = '%s.dat' % datetime.date.today()
         path = lambda *args: os.path.join(settings.PROJ_MODULE_ROOT, *args)
         f = path(filename)
