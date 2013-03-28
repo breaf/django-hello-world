@@ -8,6 +8,3 @@ run:
 
 syncdb:
 	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=django_hello_world.settings $(MANAGE) syncdb --noinput
-
-loaddata:
-	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=django_hello_world.settings $(MANAGE) loaddata initial_data
