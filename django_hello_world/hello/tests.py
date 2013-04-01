@@ -13,7 +13,7 @@ from django.template import RequestContext, Template
 from django.test import TestCase
 from django.contrib.auth.models import User
 from django.conf import settings
-from .models import UserProfile
+from .models import UserProfile, LogRecord
 
 
 class HttpTest(TestCase):
@@ -74,3 +74,10 @@ class HttpTest(TestCase):
             models_dict = eval(contents)
         self.assertTrue(models_dict['UserProfile'] == UserProfile.objects.count())
         os.remove(f)
+
+    def test_signal(self):
+        self.assertTrue(self.client.login(username='admin', password='admin'))
+        response = self.client.post(reverse('edit_contacts'))
+        last_record = LogRecord.objects.latest('id')
+        self.assertEqual(last_record.content_type.model, 'userprofile')
+        self.assertEqual(last_record.changes_type, 'edd')
