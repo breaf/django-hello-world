@@ -29,6 +29,10 @@ class RequestRecord(models.Model):
     user = models.ForeignKey(User, related_name="requests", null=True, blank=True)
     content = models.TextField("Request content")
     added_at = models.DateTimeField("Added at", auto_now_add=True)
+    priority = models.PositiveIntegerField("Priority", default=0)
+
+    class Meta:
+        ordering = ('-priority', 'added_at')
 
 post_save.connect(logging_changes, sender=RequestRecord, dispatch_uid="unique_RequestRecord_save_identifier")
 post_delete.connect(logging_deletion, sender=RequestRecord, dispatch_uid="unique_RequestRecord_delete_identifier")
