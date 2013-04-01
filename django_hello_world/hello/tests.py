@@ -13,7 +13,7 @@ from django.template import RequestContext, Template
 from django.test import TestCase
 from django.contrib.auth.models import User
 from django.conf import settings
-from .models import UserProfile, LogRecord
+from .models import UserProfile, LogRecord, RequestRecord
 
 
 class HttpTest(TestCase):
@@ -81,3 +81,10 @@ class HttpTest(TestCase):
         last_record = LogRecord.objects.latest('id')
         self.assertEqual(last_record.content_type.model, 'userprofile')
         self.assertEqual(last_record.changes_type, 'edd')
+
+    def test_customer(self):
+        for i in range(10):
+            response = self.client.get(reverse('home'))
+        RequestRecord.objects.filter(id=5).update(priority=1)
+        response = self.client.get(reverse('requests_list'))
+        self.assertEqual(response.context['records'][0].id, 5)
