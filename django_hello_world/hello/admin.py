@@ -2,7 +2,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
-from .models import UserProfile, RequestRecord
+from .models import UserProfile, RequestRecord, LogRecord
 
 
 admin.site.unregister(User)
@@ -23,4 +23,5 @@ class RequestRecordAdmin(admin.ModelAdmin):
 
 admin.site.register(User, UserProfileAdmin)
 admin.site.register(RequestRecord, RequestRecordAdmin)
+admin.site.register(LogRecord)
 
