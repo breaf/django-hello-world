@@ -50,4 +50,3 @@ class LogRecord(models.Model):
 
     def __unicode__(self):
         return "%s [%s] %s at %s" % (self.content_type, self.object_id, self.get_changes_type_display(), self.added_at)
-

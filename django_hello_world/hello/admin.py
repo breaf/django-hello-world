@@ -24,4 +24,3 @@ class RequestRecordAdmin(admin.ModelAdmin):
 admin.site.register(User, UserProfileAdmin)
 admin.site.register(RequestRecord, RequestRecordAdmin)
 admin.site.register(LogRecord)
-

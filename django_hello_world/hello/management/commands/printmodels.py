@@ -13,4 +13,3 @@ class Command(BaseCommand):
             models_dict[model.__name__] = model.objects.count()
         self.stdout.write('%s \n' % str(models_dict))
         self.stderr.write('error: %s \n' % str(models_dict))
-
